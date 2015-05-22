@@ -5,12 +5,12 @@
  * Description: Yandex.Kassa
  */
 
-include_once 'gateways/yandex/yandex.php';
-include_once 'gateways/bank/bank.php';
-include_once 'gateways/terminal/terminal.php';
-include_once 'gateways/webmoney/webmoney.php';
-include_once 'gateways/yandex_wallet/yandex_wallet.php';
-include_once 'wc_submenu.php';
+include_once 'inc/gateways/yandex/yandex.php';
+include_once 'inc/gateways/bank/bank.php';
+include_once 'inc/gateways/terminal/terminal.php';
+include_once 'inc/gateways/webmoney/webmoney.php';
+include_once 'inc/gateways/yandex_wallet/yandex_wallet.php';
+include_once 'inc/wc_submenu.php';
 
 function yandexMoney_update_option(){
 	if (isset($_POST["ym_Funds"])){update_option("ym_Funds",$_POST["ym_Funds"]);}
