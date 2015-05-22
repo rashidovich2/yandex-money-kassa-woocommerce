@@ -32,7 +32,6 @@ function woocommerce_YW_payu_init(){
       $this -> msg['message'] = "";
       $this -> msg['class'] = "";
  
-   //   add_action('init', array(&$this, 'check_payu_response'));
       if ( version_compare( WOOCOMMERCE_VERSION, '2.0.0', '>=' ) ) {
                 add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( &$this, 'process_admin_options' ) );
              } else {
@@ -64,7 +63,6 @@ function woocommerce_YW_payu_init(){
        public function admin_options(){
         echo '<h3>'.__('Оплата через Яндекс.Кассу','yandex_wallet').'</h3>';
         echo '<table class="form-table">';
-        // Generate the HTML For the settings form.
         $this -> generate_settings_html();
         echo '</table>';
  
@@ -80,7 +78,6 @@ function woocommerce_YW_payu_init(){
      * Receipt Page
      **/
     function receipt_page($order){
-        //echo '<p>Thank you for your order, please click the button below to pay with PayU</p>';
         echo $this -> generate_payu_form($order);
     }
     /**
@@ -93,7 +90,6 @@ function woocommerce_YW_payu_init(){
         $order = new WC_Order($order_id);
         $txnid = $order_id;
 		$sendurl='https://money.yandex.ru/quickpay/confirm.xml';
-	//	update_post_meta(12345,'test_key',$order);
        $result ='';
 		$result .= '<form name=ShopForm method="POST" id="submit_Yandex_Wallet_payment_form" action="'.$sendurl.'">';
 			$result .= '<input type="hidden" name="receiver" value="'.get_option('ym_WallNum').'">';
@@ -110,38 +106,8 @@ function woocommerce_YW_payu_init(){
 			$result .= '<input type="hidden" name="need-address" value="false">';
 			$result .= '<input type="radio" name="paymentType" value="PC">Оплата из кошелька в Яндекс.Деньгах.</input><br/>';
 			$result .= '<input type="radio" name="paymentType" value="AC">Оплата с произвольной банковской карты.</input><br/>';
-			// $result .= '<input type="radio" name="paymentType" value="MC">Платеж со счета мобильного телефона.</input><br/>';
-			// $result .= '<input type="radio" name="paymentType" value="GP">Оплата наличными через кассы и терминалы.</input><br/>';
-			// $result .= '<input type="radio" name="paymentType" value="WM">Оплата из кошелька в системе WebMoney.</input><br/>';
-			// $result .= '<input type="radio" name="paymentType" value="SB">Оплата через Сбербанк: оплата по SMS или Сбербанк Онлайн.</input><br/>';
-			// $result .= '<input type="radio" name="paymentType" value="AB">Оплата через Альфа-Клик.</input><br/>';
 			$result .= '<input type="submit" name="submit-button" value="Перевести">';
-		// $result .='<script type="text/javascript">';
-		// $result .='jQuery(function(){
-		// jQuery("body").block(
-        // {
-            // message: "<img src=\"'.$woocommerce->plugin_url().'/assets/images/ajax-loader.gif\" alt=\"Redirecting…\" style=\"float:left; margin-right: 10px;\" />Спасибо за заказ. Сейчас Вы будете перенаправлены на страницу оплаты.",
-                // overlayCSS:
-        // {
-            // background: "#fff",
-                // opacity: 0.6
-		// },
-		// css: {
-			// padding:        20,
-				// textAlign:      "center",
-				// color:          "#555",
-				// border:         "3px solid #aaa",
-				// backgroundColor:"#fff",
-				// cursor:         "wait",
-				// lineHeight:"32px"
-		// }
-		// });
-		// });
-		// ';
-		// $result .='jQuery(document).ready(function ($){ jQuery("#submit_Yandex_Money_payment_form").submit(); });';
-		// $result .='</script>';
 		$result .='</form>';
-		
 		return $result;
  
     }
@@ -150,12 +116,8 @@ function woocommerce_YW_payu_init(){
      **/
    function process_payment($order_id){
         $order = new WC_Order($order_id);
-		
-       /* return array('result' => 'success', 'redirect' => add_query_arg('order',
-            $order->id, add_query_arg('key', $order->order_key, get_permalink(get_option('woocommerce_pay_page_id'))))
-        );*/
 		return array('result' => 'success', 'redirect' => $order->get_checkout_payment_url( true ));
-		
+
     }
  
     
