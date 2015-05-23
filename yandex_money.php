@@ -27,7 +27,6 @@ function yandexMoney_update_option(){
 		if (!in_array($obj->id,$not)) {
 			$set = get_option("woocommerce_".$obj->id."_settings");
 			$set['enabled'] = "no";
-			var_dump($_POST["woocommerce_".$obj->id."_settings"]);
 			if (get_option('ym_Funds')=='0' && $obj->id != "yandex_wallet"){
 				if (isset($_POST["woocommerce_".$obj->id."_settings"]) && $_POST["woocommerce_".$obj->id."_settings"] == "yes"){
 					$set['enabled'] = "yes";

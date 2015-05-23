@@ -70,10 +70,6 @@ function yandexMoney_submenu_page_callback() {
 						<th scope="row">E-mail для ежедневных уведомлений для сверки платежей</th>
 						<td><input type="text" name="ym_Email" value="<?php echo get_option('ym_Email'); ?>" /></td>
 					</tr>
-					<tr valign="top">
-						<th scope="row">Секретное слово (shopPassword) для обмена сообщениями</th>
-						<td><input type="text" name="ym_Secret" value="<?php echo get_option('ym_Secret'); ?>" /></td>
-					</tr>
 				</table>
 				<h3>Данные, выдаваемые при подключении к системе Яндекс.Деньги:</h3>
 				<table class="form-table">
