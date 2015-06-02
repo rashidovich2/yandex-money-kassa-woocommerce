@@ -23,8 +23,8 @@ function woocommerce_YM_payu_init(){
       $this -> init_form_fields();
       $this -> init_settings();
  
-      $this -> title = $this -> settings['title'];
-      $this -> description = $this -> settings['description'];
+		$this->title              = $this->get_option( 'title' );
+		$this->description        = $this->get_option( 'description' );
       $this -> scid = $this -> settings['scid'];
       $this -> ShopID = $this -> settings['ShopID'];
       $this -> liveurl = '';
