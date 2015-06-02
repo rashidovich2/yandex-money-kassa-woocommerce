@@ -7,6 +7,34 @@ function register_yandexMoney_submenu_page() {
 function yandexMoney_settings_save(){
 
 }
+function yandexMoney_update_option(){
+	if (isset($_POST["ym_Funds"])){update_option("ym_Funds",$_POST["ym_Funds"]);}
+	if (isset($_POST["ym_Email"])){update_option("ym_Email",$_POST["ym_Email"]);}
+	if (isset($_POST["ym_WallNum"])){update_option("ym_WallNum",$_POST["ym_WallNum"]);}
+	if (isset($_POST["ym_Secret"])){update_option("ym_Secret",$_POST["ym_Secret"]);}
+	if (isset($_POST["ym_Demo"])){update_option("ym_Demo",'on');} else {update_option("ym_Demo",'off');}
+	if (isset($_POST["ym_Scid"])){update_option("ym_Scid",$_POST["ym_Scid"]);}
+	if (isset($_POST["ym_ShopID"])){update_option("ym_ShopID",$_POST["ym_ShopID"]);}
+	if (isset($_POST["ym_shopPassword"])){update_option("ym_shopPassword",$_POST["ym_shopPassword"]);}
+	global $woocommerce;
+	foreach ($woocommerce->payment_gateways->payment_gateways as $obj) {
+		$not=array("bacs","cheque","cod","paypal");
+		if (!in_array($obj->id,$not)) {
+			$set = get_option("woocommerce_".$obj->id."_settings");
+			$set['enabled'] = "no";
+			if (get_option('ym_Funds')=='0' && $obj->id != "yandex_wallet"){
+				if (isset($_POST["woocommerce_".$obj->id."_settings"]) && $_POST["woocommerce_".$obj->id."_settings"] == "yes"){
+					$set['enabled'] = "yes";
+				}
+			} else {
+				if (get_option('ym_Funds')=='1' && $obj->id == "yandex_wallet"){
+					$set['enabled'] = "yes";
+				}
+			}
+			update_option("woocommerce_".$obj->id."_settings",$set);
+		}
+	}
+}
 function yandexMoney_submenu_page_callback() {
 	if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $_POST[ 'my_submit_hidden' ] == 'Y' ) {
 		yandexMoney_update_option();?>
