@@ -113,7 +113,7 @@ function woocommerce_terminal_payu_init(){
 		$result .='jQuery(function(){
 		jQuery("body").block(
         {
-            message: "<img src=\"'.$woocommerce->plugin_url().'/assets/images/ajax-loader.gif\" alt=\"Redirecting…\" style=\"float:left; margin-right: 10px;\" />Спасибо за заказ. Сейчас Вы будете перенаправлены на страницу оплаты.",
+            message: "<img src=\"'.$woocommerce->plugin_url().'/inc/images/ajax-loader.gif\" alt=\"Redirecting…\" style=\"float:left; margin-right: 10px;\" />Спасибо за заказ. Сейчас Вы будете перенаправлены на страницу оплаты.",
                 overlayCSS:
         {
             background: "#fff",
