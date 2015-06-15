@@ -104,8 +104,8 @@ function woocommerce_YW_payu_init(){
 			$result .= '<input type="hidden" name="need-email" value="false" >';
 			$result .= '<input type="hidden" name="need-phone" value="false">';
 			$result .= '<input type="hidden" name="need-address" value="false">';
-			$result .= '<input type="radio" name="paymentType" value="PC">Оплата из кошелька в Яндекс.Деньгах.</input><br/>';
-			$result .= '<input type="radio" name="paymentType" value="AC">Оплата с произвольной банковской карты.</input><br/>';
+			$result .= '<input id="PC" type="radio" name="paymentType" value="PC"><label for="PC">Оплата из кошелька в Яндекс.Деньгах.</label><br/>';
+			$result .= '<input id="AC" type="radio" name="paymentType" value="AC"><label for="AC">Оплата с произвольной банковской карты.</label><br/>';
 			$result .= '<input type="submit" name="submit-button" value="Перевести">';
 		$result .='</form>';
 		return $result;
